@@ -13,11 +13,9 @@ export class NamesComponent implements OnInit, OnDestroy {
     constructor(private http: HttpService) { }
     ngOnInit(): void {
         this.getNames('');
-        this.sub.add(
-            this.searchObs.pipe(debounceTime(1000), distinctUntilChanged()).subscribe((res) => {
-                this.getNames(res);
-            })
-        )
+        this.sub = this.searchObs.pipe(debounceTime(1000), distinctUntilChanged()).subscribe((res) => {
+            this.getNames(res);
+        })
     }
     ngOnDestroy(): void {
         this.sub.unsubscribe();
@@ -38,7 +36,7 @@ export class NamesComponent implements OnInit, OnDestroy {
     addNames(name: string) {
         this.http.post('add', { name }).subscribe(
             {
-                next: (res:any) => {
+                next: (res: any) => {
                     (<HTMLInputElement>this.input?.nativeElement).value = '';
                     this.names.push(res.name);
                 },
