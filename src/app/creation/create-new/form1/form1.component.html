@@ -1,0 +1,126 @@
+  <form [formGroup]="step1Form" (ngSubmit)="step1Submit()">
+    <h6 class="mt-4 mb-2 title">Step 1 : Details</h6>
+    <div class="row">
+      <!-- type -->
+      <div class="col-md-4 pe-1 mb-4">
+        <label class="float-left w-100">Type</label>
+        <select class="form-control" formControlName="type">
+          <option value="" selected>Select</option>
+          <option *ngFor="let typeOption of typeOptions" [value]="typeOption">
+            {{ typeOption }}
+          </option>
+        </select>
+        <div class="in-valid col-md-12 p-0" *ngIf="isControlValid('type')">
+          *Please Select Type
+        </div>
+      </div>
+      <!-- class -->
+      <div class="col-md-4 pe-1 mb-4">
+        <label class="float-left w-100">Class</label>
+        <select class="form-control" formControlName="class">
+          <option value="">Select</option>
+          <option
+            *ngFor="let classOption of classOptions"
+            [value]="classOption"
+          >
+            {{ classOption }}
+          </option>
+        </select>
+        <div class="in-valid col-md-12 p-0" *ngIf="isControlValid('class')">
+          *Please Select Class
+        </div>
+      </div>
+      <!-- medium -->
+      <div class="col-md-4 pe-1 mb-4">
+        <label class="float-left w-100">Medium</label>
+        <select class="form-control" formControlName="medium">
+          <option value="">Select</option>
+          <option *ngFor="let medium of mediumOptions" [value]="medium">
+            {{ medium }}
+          </option>
+        </select>
+        <div class="in-valid col-md-12 p-0" *ngIf="isControlValid('medium')">
+          *Please Select Medium
+        </div>
+      </div>
+      <!-- subject -->
+      <div class="col-md-4 pe-1 mb-4">
+        <label class="float-left w-100">Subject</label>
+        <select class="form-control" formControlName="subject">
+          <option value="">Select</option>
+          <option
+            *ngFor="let subjectOption of subjectOptions"
+            [value]="subjectOption"
+          >
+            {{ subjectOption }}
+          </option>
+        </select>
+        <div class="in-valid col-md-12 p-0" *ngIf="isControlValid('subject')">
+          *Please Select Subject
+        </div>
+      </div>
+      <!-- chapter -->
+      <div class="col-md-4 pe-1 mb-4">
+        <label class="float-left w-100">Chapter</label>
+        <select class="form-control" formControlName="chapter">
+          <option value="">Select</option>
+          <option
+            *ngFor="let chapterOption of chapterOptions"
+            [value]="chapterOption"
+          >
+            {{ chapterOption }}
+          </option>
+        </select>
+        <div class="in-valid col-md-12 p-0" *ngIf="isControlValid('chapter')">
+          *Please Select Chapter
+        </div>
+      </div>
+      <!-- topic -->
+      <div class="col-md-4 pe-1 mb-4">
+        <label class="float-left w-100">Topic</label>
+        <select class="form-control" formControlName="topic">
+          <option value="">Select</option>
+          <option
+            *ngFor="let topicOption of topicOptions"
+            [value]="topicOption"
+          >
+            {{ topicOption }}
+          </option>
+        </select>
+        <div class="in-valid col-md-12 p-0" *ngIf="isControlValid('topic')">
+          *Please Select Topic
+        </div>
+      </div>
+      <!-- subtopic -->
+      <div class="col-md-4 pe-1 mb-4">
+        <label class="float-left w-100">Sub Topic</label>
+        <select class="form-control" formControlName="subTopic">
+          <option value="">Select</option>
+          <option
+            *ngFor="let topicOption of subtopicOptions"
+            [value]="topicOption"
+          >
+            {{ topicOption }}
+          </option>
+        </select>
+        <div class="in-valid col-md-12 p-0" *ngIf="isControlValid('subTopic')">
+          *Please Select Sub Topic
+        </div>
+      </div>
+      <!-- team -->
+      <div class="col-md-4 pe-1 mb-4" *ngIf="userRole !== 'SCERT'">
+        <label class="float-left w-100">Teams</label>
+        <select class="form-control" formControlName="team">
+          <option value="">Select</option>
+          <option *ngFor="let team of teams" [value]="team">{{ team }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- submit/reset -->
+    <div class="col-md-12 p-0 my-2 float-left">
+      <button type="submit" class="btn btn-info">Back</button>
+
+      <button type="submit" class="btn btn-info ml-2">Next</button>
+    </div>
+  </form>

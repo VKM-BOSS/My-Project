@@ -1,0 +1,61 @@
+<form [formGroup]="step2Form" (ngSubmit)="submit()">
+  <div class="row">
+    <div class="col-md-12 p-0">
+      <label class="radio-label float-left w-100 mt-2"><b>Type</b></label>
+      <div
+        *ngFor="let option of radiooptions; let i = index"
+        class="radio-container"
+      >
+        <input
+          type="radio"
+          [value]="option"
+          class="radio-input"
+          formControlName="type"
+        />
+        <label for="{{ option }}" class="radio-label mb-0">{{ option }}</label>
+      </div>
+    </div>
+    <div class="col-md-6 p-0">
+      <label class="check-label float-left w-100 my-2"><b>Format</b></label>
+      <div formGroupName="format">
+        <div class="check-container">
+          <input
+            type="checkbox"
+            class="check-input"
+            formControlName="text"
+            name="text"
+          />
+          <label for="text" class="check-label mb-0">Text</label>
+        </div>
+        <div class="check-container">
+          <input
+            type="checkbox"
+            class="check-input"
+            formControlName="image"
+            name="image"
+          />
+          <label for="image" class="check-label mb-0">Image</label>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-md-6 float-left p-0 my-2"
+      *ngIf="
+        (step2Form.get('type')?.value == 'MCQ' ||
+          step2Form.get('type')?.value == 'MSQ') &&
+        step2Form.get('format.image')?.value
+      "
+    >
+      <label class="float-left w-100"><b>Question Image</b></label>
+      <input type="file" name="img" accept=".jpg, .jpeg, .png" (change)="onFilechange($event,'questionImage')" #questionImage/>
+      <img [src]="imagePreviews['questionImage']" alt="" *ngIf="imagePreviews['questionImage']" class="small-image">
+      <span class="mdi mdi-window-close m-0" *ngIf="imagePreviews['questionImage']"
+          (click)="removeImage('questionImage',questionImage)">X</span>
+    </div>
+  </div>
+
+  <div class="col-md-12 p-0 my-4 float-left">
+    <button type="button" class="btn btn-info">Previous</button>
+    <button type="submit" class="btn btn-info ml-2">Submit</button>
+  </div>
+</form>

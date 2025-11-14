@@ -1,0 +1,12 @@
+<div>
+    <input type="text" placeholder="Search Name" (input)="searchMethod(searchInput.value)" #searchInput>
+</div>
+
+<div>
+    <input type="text" placeholder="Add Names Here" #input><button class="btn btn-primary" (click)="addNames(input.value)">Add</button>
+</div>
+
+<div>
+    <h3>List of names</h3>
+    <p *ngFor="let name of names;trackBy:trackByid">{{name.name}}</p>
+</div>
