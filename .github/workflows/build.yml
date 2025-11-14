@@ -32,4 +32,4 @@ jobs:
     - run: npm run test:ci
     
     - name: Build
-    - run : npm tun build
+    - run : npm run build
