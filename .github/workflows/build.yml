@@ -12,11 +12,12 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
 
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
+        os: [ubuntu-latest,windows-latest,macOS-latest]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -29,3 +30,9 @@ jobs:
     - run: npm ci
     - run: npm run test:ci
     - run : npm run build
+      uses: FirebaseExtended/action-hosting-deploy@v0
+      with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          projectId: fir-deploy-c9731
+          channelId: live
